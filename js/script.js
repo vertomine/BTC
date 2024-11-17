@@ -17,34 +17,43 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.log("Error loading header:", error));
 });
-// 订阅码
-const correctCode = "9wYbVE8K3bUM";
+async function verifyCode() {
+    const subscriptionCode = document.getElementById("subscription-code").value.trim();
+    const messageBox = document.getElementById("verification-message");
 
-// 验证订阅码
-function verifyCode() {
-    const inputCode = document.getElementById("subscription-code").value;
-    const verificationMessage = document.getElementById("verification-message");
+    try {
+        // 调用后端 API 验证订阅码
+        const response = await fetch("/api/verify-code", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ code: subscriptionCode }),
+        });
 
-    // 检查订阅码
-    if (inputCode === correctCode) {
-        // 显示真实的数值
-        document.getElementById("btc-value").innerText = "9000.12";
-        document.getElementById("rise-fall-value").innerText = "Rise";
-        document.getElementById("safe-value").innerText = "5%";
-        verificationMessage.innerText = "Verification passed";
-        verificationMessage.style.color = "green";
-    } else {
-        verificationMessage.innerText = "Incorrect subscription code";
-        verificationMessage.style.color = "red";
+        const result = await response.json();
+
+        if (result.success) {
+            // 更新卡片内容
+            document.getElementById("btc-value").textContent = result.data.btc;
+            document.getElementById("rise-fall-value").textContent = result.data.riseFall;
+            document.getElementById("safe-value").textContent = result.data.safetyLine;
+
+            messageBox.textContent = "Verification passed!";
+            messageBox.style.color = "green";
+        } else {
+            // 错误提示
+            messageBox.textContent = "Incorrect subscription code.";
+            messageBox.style.color = "red";
+        }
+    } catch (error) {
+        console.error("Error verifying subscription code:", error);
+        messageBox.textContent = "An error occurred. Please try again.";
+        messageBox.style.color = "red";
     }
 }
 
-// 页面加载时，设置初始的马赛克值（在未输入订阅码之前）
-window.onload = function() {
-    document.getElementById("btc-value").innerText = "******";
-    document.getElementById("rise-fall-value").innerText = "******";
-    document.getElementById("safe-value").innerText = "******";
-};
+
 document.addEventListener("DOMContentLoaded", () => {
     const getAddressBtn = document.getElementById("get-address-btn");
     const paymentInfo = document.getElementById("payment-info");
