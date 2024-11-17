@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot - Forecast</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <!-- 用于加载 header.html 的容器 -->
+    <div id="header-container"></div>
+
+    <!-- 主内容区域 -->
+    <main>
+        <!-- BTC Spot Daily Forecast Section -->
+<section class="forecast-section">
+    <h1 class="forecast-title">BTC Spot Daily Forecast</h1>
+    <div class="divider"></div>
+    <p class="forecast-description">
+        BTC Research Lab, in collaboration with major analysis teams and analysts, 
+        publishes daily forecasts of BTC trends and ups and downs, and provides safety warning lines.
+    </p>
+    <p class="forecast-description">
+        When the ups and downs approach or exceed the warning line, it is recommended to operate with caution.
+    </p>
+    <p class="forecast-description">
+        If you have subscribed to our service, please add us in time after the subscription is completed.
+    </p>
+</section>
+
+
+        <!-- 新增的特殊卡片 -->
+<div class="special-card">
+    <div class="special-card-header">
+        <span class="special-date">2024-11-18</span>
+    </div>
+    <div class="special-card-body">
+        <div class="card-item">
+            <span class="btc">BTC Opening</span>
+            <span class="btc-value" id="btc-value">******</span> <!-- 加密后的值 -->
+        </div>
+        <div class="card-item">
+            <span class="rise-fall">Rise and Fall</span>
+            <span class="rise-fall-value" id="rise-fall-value">******</span> <!-- 加密后的值 -->
+        </div>
+        <div class="card-item">
+            <span class="safe">Predicted safety line</span>
+            <span class="safe-value" id="safe-value">******</span> <!-- 加密后的值 -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="subscription-code" placeholder="Please enter the subscription code" />
+            <button onclick="verifyCode()">Verify</button>
+            <div id="verification-message"></div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- 卡片列表 -->
+        <div class="card-container">
+            <!-- 生成 10 个卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-17</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">90,569.4</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Fall</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">-0.1%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-16</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">91,035.3</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Fall</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">-0.5%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-15</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">87,297.2</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+4%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-14</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">90,424.8</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Fall</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">-3.2%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-13</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">87,971.2</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+2%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-12</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">88,665.0</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Fall</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">-0.5%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-11</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">80,389.0</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+9%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-10</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">76,681.4</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+4%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-9</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">76,506.1</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+0.2%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="date">2024-11-8</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-item">
+                        <span class="btc">BTC Opening</span>
+                        <span class="btc-value">75,869.8</span> <!-- 8000.12 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="rise-fall">Rise and Fall</span>
+                        <span class="rise-fall-value">Rise</span> <!-- Rise 行 -->
+                    </div>
+                    <div class="card-item">
+                        <span class="safe">Predicted safety line</span>
+                        <span class="safe-value">+0.5%</span> <!-- 3.2% 行 -->
+                    </div>
+                    <div class="check-container">
+                        <span class="check">&#10003;</span> <!-- 勾勾图标 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 重复 8 次，直到创建 10 个卡片 -->
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

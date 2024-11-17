@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe - BTC Research Room</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+         <!-- VIP 卡片 -->
+        <div class="vip-card-highlight">
+            <p class="vip-title">Futures VIP Subscription</p>
+            <p class="vip-price">1999 USDT / 30 Day</p>
+            <p class="vip-discount">Discount: <span>999 USDT / 30 Day</span></p>
+        </div>
+        <div class="vip-card-alternate">
+            <p class="vip-title">Spot VIP Subscription</p>
+            <p class="vip-price">1299 USDT / 30 Day</p>
+            <p class="vip-discount">Discount: <span>219 USDT / 30 Day</span></p>
+        </div>
+        <div class="content">
+            <h1>Discount payment</h1>
+            <!-- 按钮 -->
+            <button id="get-address-btn" class="btn">Get payment address</button>
+
+            <!-- 显示区域 -->
+            <div id="payment-info" class="hidden">
+                <p id="generating-text" class="info-text">Generating your payment address...</p>
+                <img id="qr-code" class="hidden" alt="TRC20 QR Code">
+                <p id="wallet-address" class="hidden">TKs7sxuJiSLZeLti9KBxk9C66Zfis9v6Se</p>
+                <button id="copy-btn" class="btn hidden">Copy Wallet Address</button>
+                <p class="info-text">Only transfer TRC20 related assets to this address</p>
+            <!-- 电报链接按钮 -->
+            <div class="telegram-links">
+                <a href="https://t.me/bbc9956" target="_blank">
+                    <img src="assets/telegram1.png" alt="Telegram Link 1" class="telegram-button">
+                </a>
+                <a href="https://t.me/F168111" target="_blank">
+                    <img src="assets/telegram2.png" alt="Telegram Link 2" class="telegram-button">
+                </a>
+            </div>
+        </div>
+    </div>
+    <section class="investors-partners">
+        <h2>Investors and Partners</h2>
+        <div class="divider"></div>
+        <div class="logo-wall">
+            <!-- LOGO 动态展示 -->
+            <div id="logo-display" class="logo-display"></div>
+        </div>
+    </section>
+</main>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract - Resonance Strategy</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <section class="software-intro">
+            <h1>Resonance Trend Contract</h1>
+            <div class="divider"></div>
+            <p class="intro-title">Profit Logic:</p>
+            <p>
+                This strategy is to open both long and short positions, calculate the full position operation 
+                by splitting the positions, and the profit direction has a reverse floating loss. There will 
+                be large fluctuations at the beginning. When the positions are slowly replenished and the 
+                average price is pulled very close, there will be positive profits at this time. Then, the 
+                set global stop profit parameters will trigger all positions to close and open new positions. 
+                The profit will be automatically transferred to the spot and separated from the principal by 
+                default, and then continue to open positions at the latest price to prevent the long and short 
+                span from being particularly large and resulting in no profit for many days or even increasing 
+                floating losses.
+            </p>
+
+            <p class="intro-title">Judgment Logic:</p>
+            <p>
+                MACD + BOLL + EMA + KDJ comprehensive indicators
+            </p>
+            <p class="intro-title">Operation method:</p>
+            <p>
+                Applicable to OKX and Binance, requires authorized account contract trading permissions, no other permissions are required, 24-hour system automatic trading, trading currency (BTC, ETH) monthly profit of at least 15%
+            </p>
+
+            <p class="tip">
+                <strong>Tip:</strong> The strategy is based on the use of the third-party underlying FMZ. 
+                Please be aware that additional third-party usage fees (not strategy usage fees) may be incurred 
+                during use.
+            </p>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

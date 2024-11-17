@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Tool</title>
+</head>
+<body>
+    <h1>Data Encryption Tool</h1>
+    <label for="data">Enter Data to Encrypt:</label>
+    <input type="text" id="data" placeholder="Enter your data here">
+    <br><br>
+    <label for="key">Enter Encryption Key:</label>
+    <input type="text" id="key" placeholder="Enter encryption key">
+    <br><br>
+    <button onclick="encryptData()">Encrypt</button>
+    <h3>Encrypted Data:</h3>
+    <textarea id="result" rows="5" cols="50" readonly></textarea>
+
+    <script>
+        function encryptData() {
+            const data = document.getElementById('data').value;
+            const key = document.getElementById('key').value;
+
+            if (data && key) {
+                const encrypted = CryptoJS.AES.encrypt(data, key).toString();
+                document.getElementById('result').value = encrypted;
+            } else {
+                alert('Please enter both data and encryption key!');
+            }
+        }
+    </script>
+</body>
+</html>
